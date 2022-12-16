@@ -6,15 +6,10 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-#PS1='[\u@\h \W]\$ '
+PS1='[\u@\h \W]\$ '
 
-function __virtualenv_ps1 {
-    echo "${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}"
-}
-parse_git_branch() {
-    git branch 2>/dev/null | grep '^*' | colrm 1 2
-}
-PS1="\n\$(__virtualenv_ps1)[\u@\h \e[1;36m\W\e[0m] \e[2;35m\$(parse_git_branch)\e[0m\n\$ "
+# Starship
+eval "$(starship init bash)"
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
